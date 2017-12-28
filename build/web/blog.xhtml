@@ -1,0 +1,132 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <title>Cards That Never Were</title>
+        <link rel="shortcut icon" type="image/png" href="img/favicon.png"/>
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
+        <link rel="stylesheet" type="text/css" href="style.css"/>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    </h:head>
+    <h:body>
+        
+        <ui:insert name="login" >
+		  <ui:include src="login-bar.xhtml" />
+        </ui:insert>
+        
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span> 
+                    </button>
+                    <h:link class="navbar-brand" outcome="index" >
+                        <img class="img-responsive logo" src="img/logo_1.png"/>
+                    </h:link>
+                </div>
+                <div class="collapse navbar-collapse" id="myNavbar">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><h:link value="Home" outcome="index" /></li>
+                        <li><h:link value="Business" outcome="business" /></li>
+                        <li><h:link value="Store" outcome="store" /></li>
+                        <li class="active"><h:link value="Blog" outcome="blog" /></li>
+                        <li><h:link value="Cart" outcome="cart" /></li>
+                        <!--<li><ui:insert name="login" >
+                          <ui:include src="login-bar.xhtml" />
+                          </ui:insert>
+                        </li>-->
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        
+        
+        <div class="content">
+            <div class="row sec-one">
+                <img class="img-responsive" src="img/blog-grid.png"/>
+            </div>
+            <hr/>
+            
+            <div class="row container blog-container">
+                
+                <div class="col-sm-9">
+                   
+                    <ui:repeat value="#{login.displayBlogs}" var="blg">
+                        <div class="row blog-post" data-toggle="modal" data-target="#post1">
+                        <div class="col-sm-4">
+                            <img class="img-responsive" src="img/blog-grid.png"/>
+                        </div>
+                        <div class="col-sm-8">
+                            <h4>#{blg.blogTitle}</h4>
+                            <p>#{blg.blogTag}</p>
+                        </div>
+                        </div>
+                    
+                    
+                        <div class="modal fade" id="post1" role="dialog">
+                        <div class="modal-dialog">
+                       
+                          Modal content
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <button type="button" class="close" data-dismiss="modal">&times;</button>
+                              <h4 class="modal-title">#{blg.blogTitle}</h4>
+                            </div>
+                            <div class="modal-body">
+                                <p>#{blg.blogBody}</p>
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            </div>
+                          </div>
+                         
+                        </div>
+                      </div>
+                   
+                    </ui:repeat>
+                   
+	    	</div>
+                
+
+	    	<div class="col-sm-3">
+                    <h3>Categories</h3>
+                    <h:panelGroup rendered="#{login.isLogin()}">
+                        <a class="btn btn-success" href="createBlog.xhtml" rendered = "#{not login.isLogin()}">Post a Blog</a>
+                    </h:panelGroup>
+                    <ul>
+                        <li>Something 1</li>
+                        <li>Something 1</li>
+                        <li>Something 1</li>
+                        <li>Something 1</li>
+                        <li>Something 1</li>
+                        <li>Something 1</li>
+                        <li>Something 1</li>
+                    </ul>
+                </div>
+	    </div>
+            
+            <div class="pagination pagination2">
+                    <a href="#">&laquo;</a>
+                    <a href="#">1</a>
+                    <a href="#">2</a>
+                    <a href="#">3</a>
+                    <a href="#">4</a>
+                    <a href="#">5</a>
+                    <a href="#">6</a>
+                    <a href="#">&raquo;</a>
+            </div>
+        </div>
+       
+        
+        <ui:insert name="footer" >
+		  <ui:include src="footer.xhtml" />
+        </ui:insert>
+
+    </h:body>
+</html>
+

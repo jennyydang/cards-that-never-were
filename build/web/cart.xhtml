@@ -1,0 +1,110 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Cards That Never Were</title>
+        <link rel="shortcut icon" type="image/png" href="img/favicon.png"/>
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
+        <link rel="stylesheet" type="text/css" href="style.css"/>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    </h:head>
+    <h:body>
+       
+        <!--<ui:insert name="login" >
+		  <ui:include src="login-bar.xhtml" />
+        </ui:insert>-->
+        
+        
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span> 
+                    </button>
+                    <h:link class="navbar-brand" outcome="index" >
+                        <img class="img-responsive logo" src="img/logo_1.png"/>
+                    </h:link>
+                </div>
+                <div class="collapse navbar-collapse" id="myNavbar">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><h:link value="Home" outcome="index" /></li>
+                        <li><h:link value="Business" outcome="business" /></li>
+                        <li><h:link value="Store" outcome="store" /></li>
+                        <li><h:link value="Blog" outcome="blog" /></li>
+                        <li><h:link value="Cart" outcome="cart" /></li>
+                        <!--<li><ui:insert name="login" >
+                          <ui:include src="login-bar.xhtml" />
+                          </ui:insert>
+                        </li>-->
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        
+        <div class="content">
+            
+            <div class="row sec-two">
+                
+                <h:form>
+                    <h:dataTable value="#{shoppingCart.cart}" var="i"
+                                 border="1" cellpadding="7px"
+                                 style="border-collapse: collapse">
+                        <h:column>
+                            <f:facet name="header">Price</f:facet>
+                            $#{i.p.cardPrice}
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Quantity</f:facet>
+                            <h:inputText value="#{i.quantity}" style="width:20px"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Image</f:facet>
+                            <h:graphicImage value="#{i.p.figurePath}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Action</f:facet>
+                            <h:commandButton value="Delete" action="#{shoppingCart.remove(i)}"/>
+                        </h:column>
+                        <f:facet name="footer">Total: $#{shoppingCart.total}</f:facet>
+                    </h:dataTable>
+                    <h:commandButton value="Update" action="#{shoppingCart.update()}"/>
+                    <h:commandButton value="Payment" action="#{shoppingCart.payment()}"/>
+                </h:form>
+                <h:link value="Continue Shopping" outcome="store"/>
+    
+            </div>
+            
+            <div class="row sec-one">
+                <div class="col-sm-4">
+                    <h4>Include</h4>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
+                    <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</p>
+                </div>
+                <div class="col-sm-4">
+                    <h4>Description</h4>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
+                    <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</p>
+                </div>
+                <div class="col-sm-4">
+                    <h4>Shipping</h4>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
+                    <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</p>
+                </div>
+            </div>
+            
+	</div>
+        
+        <ui:insert name="footer" >
+		  <ui:include src="footer.xhtml" />
+        </ui:insert>
+        
+    </h:body>
+</html>
+

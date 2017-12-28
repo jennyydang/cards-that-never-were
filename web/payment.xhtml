@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <form action="https://www.sandbox.paypal.com/cgi-bin/webscr"
+              method="POST">
+            <c:set var="dem" value="1"/>
+            <c:forEach items="#{shoppingCart.cart}" var="i">
+                <input type="hidden"
+                       name="item_number_#{dem}"
+                       value="#{i.p.card_id}"/>
+                <input type="hidden"
+                       name="item_name_#{dem}"
+                       value="#{i.p.figureName}"/>
+                <input type="hidden"
+                       name="quantity_#{dem}"
+                       value="#{i.quantity}"/>
+                <input type="hidden"
+                       name="amount_#{dem}"/>
+                <c:set var="dem" value="#{dem+1}"/>
+            </c:forEach>
+            <input type="hidden" name="cmd" value="_cart"/>
+            <input type="hidden" name="business" value="ctnw_business1@gmail.com"/>
+            <input type="hidden" name="return"
+                   value="http://localhost:8080/ShoppingCartTester/faces/success.xhtml"/>
+            <input type="hidden" name="cancel"
+                   value="http://localhost:8080/ShoppingCartTester/faces/fail.xhtml"/>
+            
+            <input type="image" src="http://www.paypal.com/en_US/i/btn/btn_xpressCheckout.gif"/>
+        </form>
+    </h:body>
+</html>
+
